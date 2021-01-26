@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import ArtistList from "../components/ArtistList";
+import ArtistList from "../components/SongList";
 
 const AppContainer = () => {
 
@@ -22,7 +22,7 @@ const AppContainer = () => {
 
     return (
         <>
-        <h1>App Container</h1>
+        <h1>Top 20 in the charts</h1>
         <ArtistList songs={songs} loaded={loaded}/>
         </>
     )
