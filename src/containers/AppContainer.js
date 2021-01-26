@@ -1,26 +1,29 @@
 import React, {useState, useEffect} from "react";
-import Artist from "../components/Artist";
+import ArtistList from "../components/ArtistList";
 
 const AppContainer = () => {
 
-    const [chart, setChart] = useState({});
+    const [songs, setChart] = useState({});
+    const [loaded, setLoaded] = useState(false);
+
 
     useEffect(()=>{
-        getChart();
-    })
+        getSongs();
+    }, [])
     
-    const getChart = () => {
+    const getSongs = () => {
         console.log("getting chart info");
         fetch(`https://itunes.apple.com/gb/rss/topsongs/limit=20/json`)
         .then(res => res.json())
         .then(data => setChart(data))
+        .then(() => setLoaded(true))
 
     }
 
     return (
         <>
         <h1>App Container</h1>
-        <Artist chart={chart}/>
+        <ArtistList songs={songs} loaded={loaded}/>
         </>
     )
 
